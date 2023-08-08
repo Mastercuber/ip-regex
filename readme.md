@@ -26,6 +26,16 @@ ipRegex({exact: true}).test('unicorn 192.168.0.1');
 ipRegex.v6({exact: true}).test('1:2:3:4:5:6:7:8');
 //=> true
 
+// Is an private IP address
+ipRegex({isPrivate: true}).test('unicorn 127.0.0.1 rainbow')
+//=> true
+
+ipRegex({exact: true, isPrivate: true}).test('unicorn 10.0.0.1')
+//=> false
+
+ipRegex({exact: true, isPrivate: true}).test('10.0.0.1')
+//=> true
+
 'unicorn 192.168.0.1 cake 1:2:3:4:5:6:7:8 rainbow'.match(ipRegex());
 //=> ['192.168.0.1', '1:2:3:4:5:6:7:8']
 
